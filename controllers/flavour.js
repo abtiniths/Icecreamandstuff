@@ -24,7 +24,7 @@ const voteCounter = async (req, res) => {
     const flavor = req.body.letsgo;
     const username = req.session.user
         //const voteCheck = await Users.findOne({ where: {user_id: username }, attributes: ['vote']})
-        const voteCheck = await Users.findById({ where: {username: username}})
+        const voteCheck = await Users.findByPk(username.user_id)
           if(voteCheck.vote === 0){
               res.redirect('/')
          }else {
