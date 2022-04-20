@@ -1,0 +1,15 @@
+<%- include("./partials/nav.ejs") %>
+     
+
+<div class="wrapper">
+  <form action="/flavour" method="post">
+  <label for="flavour">Create Flavour</label>
+  <input type="text" id="flavour" name="flavour" required>
+  <label for="description">Write about the flavour!</label>
+  <input type="text" id="description" name="description" required>
+ 
+  <button>Create!</button>
+  </form>
+      </div>
+   
+<%- include("./partials/footer.ejs") %>

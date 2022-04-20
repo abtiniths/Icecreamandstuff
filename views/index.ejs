@@ -1,0 +1,23 @@
+<%- include("./partials/nav.ejs") %>
+     
+<div class="wrapper-flavour"> 
+    <form action="/vote" method="post">
+        <h1>Icecream and stuff!</h1>
+        
+        <div>
+            <% for (let i=0; i < flavours.length; i++) { %>
+                      
+                <h1> <%=flavours[i].flavour%> </h1> 
+                <p> <%=flavours[i].vote%> </p>
+                <h3> <%=flavours[i].description%> </h3> 
+                     <input type="radio" name="letsgo" value="<%=flavours[i].flavour%>" id="id">
+                        <button>VOTE</button>
+                   
+                </div>
+                <% } %>
+        </div>
+        </form>
+    </div>
+  
+   
+<%- include("./partials/footer.ejs") %>

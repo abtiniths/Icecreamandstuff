@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,minimum-scale=1">
+		<title>Login</title>
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+		
+        <link href="/static/css/login.css" rel="stylesheet" type="text/css">
+	</head>
+	<body>
+		<div class="login">
+			
+			<form action="/register" method="post">
+				<label for="username">
+                    <h1>Register</h1>
+					<i class="fas fa-user"></i>
+				</label>
+				<input type="text" name="username" placeholder="Username" id="username" required>
+				<label for="password">
+					<i class="fas fa-lock"></i>
+				</label>
+				<input type="password" name="password" placeholder="Password" id="password" required>
+				<button>Register!</button>
+			</form>
+		</div>
+		<%- include("./partials/footer.ejs") %>
+	</body>
+</html>
