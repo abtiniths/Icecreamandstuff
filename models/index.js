@@ -12,8 +12,9 @@ const Flavours = Flavour(sequelize,Sequelize.DataTypes);
 const Users = User(sequelize, Sequelize.DataTypes);
 
 
-Flavours.hasMany(Users, { foreginKey: "flavourId" });
-Users.belongsTo(Flavours, { foreginKey: "flavourId" });
+Flavours.hasMany(Users);
+Users.belongsTo(Flavours);
+
 
 
 /*

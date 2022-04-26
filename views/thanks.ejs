@@ -1,0 +1,17 @@
+<%- include("./partials/nav.ejs") %>
+
+
+<h1>TOP 5 RATED ICECREAMS!</h1>
+
+<div>
+<% for (let i=0; i < topp.length; i++) { %>
+    <h1> <%=topp[i].flavour%> </h1>
+    <h1> <%=topp[i].vote%> </h1>
+    <% } %>
+
+</div>
+
+
+
+
+<%- include("./partials/footer.ejs") %>

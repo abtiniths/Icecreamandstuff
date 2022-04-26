@@ -1,23 +1,26 @@
 <%- include("./partials/nav.ejs") %>
-     
-<div class="wrapper-flavour"> 
+<link href="/static/css/flavour.css" rel="stylesheet" type="text/css">
+
+
+<section class="cards-wrapper">
+    
     <form action="/vote" method="post">
         <h1>Icecream and stuff!</h1>
         
-        <div>
+     
             <% for (let i=0; i < flavours.length; i++) { %>
-                      
+                <div class="card">    
                 <h1> <%=flavours[i].flavour%> </h1> 
                 <p> <%=flavours[i].vote%> </p>
-                <h3> <%=flavours[i].description%> </h3> 
+                <p> <%=flavours[i].description%> </p> 
                      <input type="radio" name="letsgo" value="<%=flavours[i].flavour%>" id="id">
                         <button>VOTE</button>
-                   
-                </div>
+                    </div>
+              
                 <% } %>
-        </div>
-        </form>
-    </div>
-  
-   
+    
+        </form>¨
+    
+</section>
+
 <%- include("./partials/footer.ejs") %>

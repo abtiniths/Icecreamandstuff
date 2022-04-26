@@ -1,6 +1,6 @@
 
 const {Flavours, Users} = require('../models')
-
+const { Op } = require("sequelize")
 
 const getAll = async (req, res) => {
     const flavours = await Flavours.findAll();
@@ -14,74 +14,46 @@ const createFlavour = async (req, res) => {
             flavour,
             description
         });
-        res.redirect('/');
+        res.redirect('/vote');
 }
 
 
+const top = async (req, res) => {
+    const topp = await Flavours.findAll({
+        where: {
+            vote: {
+                [Op.or]: {
+                    [Op.gt]: 10,
+                    [Op.eq]: null
+                  }
+            }
+        },
+     limit: 5
+      });
+      res.render('thanks', { topp });
+}
 
 const voteCounter = async (req, res) => {
-
     const flavor = req.body.letsgo;
     const username = req.session.user
-        //const voteCheck = await Users.findOne({ where: {user_id: username }, attributes: ['vote']})
         const voteCheck = await Users.findByPk(username.user_id)
           if(voteCheck.vote === 0){
-              res.redirect('/')
-         }else {
+            res.redirect('/')
+           }else {
         const flavourToUpdate = await Flavours.findOne({ where: { flavour: flavor } });
         flavourToUpdate.increment('vote');
-    voteCheck.decrement('vote')
+        voteCheck.decrement('vote')
+        voteCheck.addflavourToUpdate(flavor)
+        flavourToUpdate.flavour.id = voteCheck.user.flavourId 
+        
          }
-    res.redirect('/');
+         res.redirect('/vote/thanks');
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-const VoteCounter = async (req, res) => {
-       const what = req.body.votebutton
-       const name = req.body.username
-       // const voteCheck = await Users.findOne({ where: {username: name }, attributes: ['vote']})
-      //  if(voteCheck.vote === 0){
-       //     res.redirect('/')
-       // }else {
-        const incFlavourVote = await Flavours.findOne({ where: {flavour: req.body.what}})
-        incFlavourVote.increment('vote')
-
-        const vote = Flavours.findById(req.params.id)[0];
-vote.increment('vote')
-
-const incFlavourVote = await Flavours.findOne({ where: {flavour: flav}, attributes: ['vote']})
-    incFlavourVote.increment('vote')
-
-    const vote = Flavours.findById(req.params.id)[0];
-    vote.increment('vote')
-    
-        const user = await Users.findOne({ where: {username: name }})
-        user.decrement('vote')
-   // }
-
-res.redirect('/')
-}
-*/
-
-
-
 
 
 module.exports = {
     getAll,
     createFlavour,
-    voteCounter
+    voteCounter,
+    top
 }

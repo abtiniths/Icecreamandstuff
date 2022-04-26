@@ -45,7 +45,7 @@ app.use( express.urlencoded({ extended: true}))
 app.use('/static', express.static(path.join(__dirname, 'public')));
 
 
-let sessinChecker = (req, res) => {
+let sessionChecker = (req, res) => {
     if(req.session.Users && req.cookies.user_sid){
         res.redirect('/')
     }
@@ -62,10 +62,10 @@ let sessinChecker = (req, res) => {
 })();
 
 // app use router paths
-app.use('/login', login);
+app.use('/', login);
 app.use('/register', register);
 app.use('/flavour', flavour);
-app.use('/', vote);
+app.use('/vote', vote);
 
 
 app.use((req, res) => {
@@ -83,10 +83,7 @@ app.set( 'view engine', 'ejs');
 
 
 
-app.get("/welcome", (req, res) => {
-    res.render("welcome");
-  });
-  
+
 
 
 app.listen(port, host, () => {

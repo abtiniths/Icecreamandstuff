@@ -1,14 +1,14 @@
-const {Flavours} = require('../models');
+const {Flavours, Users} = require('../models');
 
 
 
 Flavours.bulkCreate([
-        {flavour: 'Vanilla', description: 'This is the best icecream ever made!'},
-        {flavour: 'Strawberry', description: 'This is the best icecream ever made!'},
-        {flavour: 'Chocholoco', description: 'This is the best icecream ever made!'},
-        {flavour: 'Coockie', description: 'This is the best icecream ever made!'},
-        {flavour: 'Mint', description: 'This is the best icecream ever made!'},
-        {flavour: 'Fudge Brownie', description: 'This is the best icecream ever made!'},
+        {flavour: 'Vanilla', description: 'This is the best icecream ever made!', vote: 15},
+        {flavour: 'Strawberry', description: 'This is the best icecream ever made!', vote: 15},
+        {flavour: 'Chocholoco', description: 'This is the best icecream ever made!', vote: 15},
+        {flavour: 'Coockie', description: 'This is the best icecream ever made!', vote: 15},
+        {flavour: 'Mint', description: 'This is the best icecream ever made!', vote: 15},
+        {flavour: 'Fudge Brownie', description: 'This is the best icecream ever made!', vote: 15},
         {flavour: 'Christmassy', description: 'This is the best icecream ever made!'},
         {flavour: 'Cold Turkey', description: 'This is the best icecream ever made!'},
         {flavour: 'White Chocolate', description: 'This is the best icecream ever made!'},
@@ -24,5 +24,11 @@ Flavours.bulkCreate([
       {ignoreDuplicates: true})
       .then(() => 
       console.log("Flavour data have been saved"));
+ 
+Users.create(
+        {username: 'abtin', password: '1234', vote: 100, flavourId: 1},
+      { validate: true })
+      .then(() => 
+      console.log("Neo is online"))
 
     
